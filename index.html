@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title> Result App Generator</title>
+  <style>
+      body {
+        overflow-x: hidden;
+        margin: 0;
+        padding: 0;
+        
+      font-family: Arial, sans-serif;
+      background-image: linear-gradient(pink, rgb(250, 250, 150));
+      text-align: center;
+      padding: 30px;
+    }
+
+    .form-container {
+      background: white;
+      padding: 20px;
+      max-width: 450px;
+      margin: auto;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    }
+
+    input {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-shadow: 0 0 5px rgba(230, 18, 71, 0.1);
+      transition: box-shadow 0.3s ease;
+    }
+
+    input:focus {
+      outline: none;
+      box-shadow: 10 10 18px rgba(237, 38, 124, 0.6);
+      border-color: #c30b8c;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #1767b8;
+      color: white;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+      border-radius: 5px;
+    }
+
+    button:hover {
+      background-color: #2dac8a;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎓  Result App Generator</h1>
+  <div class="form-container">
+    <input type="text" id="name" placeholder="Enter your name" required />
+    <input type="text" id="roll" placeholder="Enter roll number" required />
+    <input type="number" id="sub1" placeholder="Maths (out of 100)" required />
+    <input type="number" id="sub2" placeholder="English (out of 100)" required />
+    <input type="number" id="sub3" placeholder="Science (out of 100)" required />
+    <input type="number" id="sub4" placeholder="Computer (out of 100)" required />
+    <input type="number" id="sub5" placeholder="Urdu (out of 100)" required />
+    <button onclick="generateResult()">Generate Result</button>
+  </div>
+
+  <script>
+    function generateResult() {
+      const name = document.getElementById("name").value;
+      const roll = document.getElementById("roll").value;
+
+      const sub1 = parseFloat(document.getElementById("sub1").value);
+      const sub2 = parseFloat(document.getElementById("sub2").value);
+      const sub3 = parseFloat(document.getElementById("sub3").value);
+      const sub4 = parseFloat(document.getElementById("sub4").value);
+      const sub5 = parseFloat(document.getElementById("sub5").value);
+
+      if (!name || !roll || [sub1, sub2, sub3, sub4, sub5].some(isNaN)) {
+        alert("Please fill all fields correctly!");
+        return;
+      }
+
+      const totalMarks = 500;
+      const obtainedMarks = sub1 + sub2 + sub3 + sub4 + sub5;
+      const percentage = ((obtainedMarks / totalMarks) * 100).toFixed(2);
+      let grade = "";
+
+      if (percentage >= 90) {
+        grade = "A++";
+      } else if (percentage >= 80) {
+        grade = "A+";
+      } else if (percentage >= 70) {
+        grade = "A";
+      } else if (percentage >= 60) {
+        grade = "B";
+      } else if (percentage >= 50) {
+        grade = "C";
+      } else {
+        grade = "Fail";
+      }
+
+      // Save in sessionStorage
+      sessionStorage.setItem("name", name);
+      sessionStorage.setItem("roll", roll);
+      sessionStorage.setItem("obtained", obtainedMarks);
+      sessionStorage.setItem("percentage", percentage);
+      sessionStorage.setItem("grade", grade);
+
+      // Redirect
+      window.location.href = "result.html";
+    }
+  </script>
+</body>
+</html>

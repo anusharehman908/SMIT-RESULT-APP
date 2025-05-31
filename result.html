@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Your Result</title>
+  <style>
+  * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #82d7ea, #d1f7e3);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      overflow-x: hidden;
+
+      box-sizing: border-box;
+
+    }
+
+    .result-card {
+      background: #fff;
+      padding: 40px 30px;
+      width: 100%;
+      max-width: 500px;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .result-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 30px 90px rgba(214, 225, 8, 0.15);
+    }
+
+    h2 {
+      color: #007b5e;
+      margin-bottom: 25px;
+      font-size: 28px;
+    }
+
+    .detail {
+      font-size: 18px;
+      color: #444;
+      margin: 12px 0;
+    }
+
+    .grade {
+      font-size: 22px;
+      font-weight: bold;
+      color: #1f8b4c;
+      margin-top: 20px;
+    }
+
+    @media (max-width: 600px) {
+      .result-card {
+        padding: 30px 20px;
+      }
+
+      h2 {
+        font-size: 24px;
+      }
+
+      .detail {
+        font-size: 16px;
+      }
+
+      .grade {
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="result-card">
+    <h2>🎓 Student Result App</h2>
+    <div class="detail" id="nameBox"></div>
+    <div class="detail" id="rollBox"></div>
+    <div class="detail">Total Marks: 500</div>
+    <div class="detail" id="obtainedBox"></div>
+    <div class="detail" id="percentageBox"></div>
+    <div class="grade" id="gradeBox"></div>
+  </div>
+
+  <script>
+    document.getElementById("nameBox").innerText = "Name: " + sessionStorage.getItem("name");
+    document.getElementById("rollBox").innerText = "Roll No: " + sessionStorage.getItem("roll");
+    document.getElementById("obtainedBox").innerText = "Obtained Marks: " + sessionStorage.getItem("obtained");
+    document.getElementById("percentageBox").innerText = "Percentage: " + sessionStorage.getItem("percentage") + "%";
+    document.getElementById("gradeBox").innerText = "Grade: " + sessionStorage.getItem("grade");
+  </script>
+</body>
+</html>
